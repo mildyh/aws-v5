@@ -45,9 +45,13 @@ jobs: #이건 키워드이다. 위에 name, on, push, branches 다 키워드 이
         uses: einaregilsson/beanstalk-deploy@v20 # 엘라스틴 빈스톡으로 이동시킨다.
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }} #Github Action은 AWS에 EC2로 갈 권한이 없다. 그래서 그 권한을 주기 위해 access를 준다.
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}   
           application_name: aws-v5-beanstalk # 엘리스틱 빈스톡 애플리케이션 이름!
           environment_name: Awsv5beanstalk-env # 엘리스틱 빈스톡 환경 이름!
           version_label: aws-v5-${{steps.current-time.outputs.formattedTime}} #올라갈 버전은 계속 이름이 바꿔져야 하니까, 뒤에 시간을 불러와서 붙여서 새 버전의 이름으로 한다.
           region: ap-northeast-2 # 서울 ap-northeast-2 버지니아북부 us-east-1 , 엘라스틱 빈톡스 오른쪽 위에 어느나라로 되어 있는지 확인해라 
-          deployment_package: deploy/deploy.zip #이것만 엘라스틱 빈스톡에 배포하겠다.
+          deployment_package: deploy/deploy.zip #이것만 엘라스틱 빈스톡에 배포하겠다. 테스트를 해보자!
+
+
+
+
