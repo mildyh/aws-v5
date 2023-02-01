@@ -1,22 +1,22 @@
-name: aws-v5
-on:
+name: aws-v5 
+on: 
   push:
     branches:
-      - main
+      - main #main branch에 push가 되면 아래 jobs 들을 해라. 어떤 브랜치인지 알려면, remote git에서 확인해라
 
 # actions/setup-java@v2는 사용자 정의 배포를 지원하고 Zulu OpenJDK, Eclipse Temurin 및 Adopt OpenJDK를 기본적으로 지원합니다. v1은 Zulu OpenJDK만 지원합니다.
-jobs:
-  build: # 마음대로 적어도됨.
-    runs-on: ubuntu-18.04
+jobs: #이건 키워드이다. 위에 name, on, push, branches 다 키워드 이다.
+  build: # 마음대로 적어도됨. jobs의 최종목표를 여기다 쓴다.
+    runs-on: ubuntu-18.04 #키워드.. runs-on은 설치 하라는 뜻 내부에는 도커라는 기술 쓰임
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout # - 는 sequence를 의미하고 꼭 - 써줘야 한다.
+        uses: actions/checkout@v2 # actions는 라이브러리, 스크립트들의 모임. 스크립트 적기 귀찮은 것들을 라이브러리 형태로 제공해준다.
       - name: Set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v1 #actions/setup-java@v1
         with:
           java-version: 11
       - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+        run: chmod +x ./gradlew #스크립트, 실행권한을 준다.
         shell: bash
       - name: Build with Gradle
         run: ./gradlew clean build
